@@ -1,0 +1,23 @@
+{
+  "cycle": "Day4",
+  "as_of": "Day4T04:00:00",
+  "inventory": [
+    {"centre_id": "C1", "item": "Rice (standard)", "on_hand_kg": 4300, "incoming": [{"supplier_id": "SUP-101", "expected_kg": 4200, "confidence": "high"}]},
+    {"centre_id": "C1", "item": "Fortified porridge mix", "on_hand_kg": 320, "incoming": []},
+
+    {"centre_id": "C2", "item": "Rice (standard)", "on_hand_kg": 4100, "incoming": [{"supplier_id": "SUP-317", "expected_kg": 4150, "confidence": "high"}]},
+    {"centre_id": "C2", "item": "Fortified rice", "on_hand_kg": 480, "incoming": [{"supplier_id": "SUP-317", "expected_kg": 500, "confidence": "high"}]},
+    {"centre_id": "C2", "item": "Milk", "on_hand_kg": 210, "incoming": [{"supplier_id": "SUP-317", "expected_kg": 200, "confidence": "high"}]},
+    {"centre_id": "C2", "item": "Shared fortification-line capacity", "on_hand_units": "1 line, ~5600 meal-equivalents/day max throughput", "note": "This is the true constraint behind the Day1-3 PRG-002 shortfall - not an ingredient stockout, a shared-equipment ceiling that planning has been resolving in favour of the larger programme by default."},
+
+    {"centre_id": "C3", "item": "Rice (standard)", "on_hand_kg": 4200, "incoming": [{"supplier_id": null, "expected_kg": 4100, "confidence": "high"}]},
+    {"centre_id": "C3", "item": "Green leafy vegetables", "on_hand_kg": 150, "incoming": [{"supplier_id": "SUP-204", "expected_kg": 1900, "confidence": "LOW", "confidence_basis": "Pressure-adjusted reliability score 0.35 (see supplier file); this delivery volume (1900kg) exceeds the 1200kg steady-state commitment this supplier has ever cleanly met, and matches the load profile under which it failed last cycle."}]},
+
+    {"centre_id": "C4", "item": "Fortified rice", "on_hand_kg": 2100, "incoming": [{"supplier_id": "SUP-450", "expected_kg": 2100, "confidence": "high"}],
+      "note": "Combined draw today is PRG-002 (1400kg) + PRG-005 (900kg) = 2300kg against 2100kg on hand + 2100kg incoming. Nominally enough, but the Day2 incident shows this centre has no per-programme reservation - both lines will draw from one pool again unless the agent enforces a split allocation before production starts."},
+
+    {"centre_id": "C5", "item": "Rice (standard)", "on_hand_kg": 5600, "incoming": [{"supplier_id": null, "expected_kg": 5500, "confidence": "high"}]},
+    {"centre_id": "C5", "item": "Milk", "on_hand_kg": 700, "incoming": [{"supplier_id": "SUP-317", "expected_kg": 600, "confidence": "high"}]},
+    {"centre_id": "C5", "item": "Production line capacity", "on_hand_units": "42,000 meals/day steady-state ceiling", "note": "Today's combined ask (PRG-001 34,000 + PRG-004 surge 12,000 = 46,000) exceeds this by ~4,000 meals. Ingredients are sufficient; the constraint is physical throughput, and it is the one constraint no ingredient-level check will ever catch."}
+  ]
+}

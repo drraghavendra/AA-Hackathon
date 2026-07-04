@@ -1,0 +1,61 @@
+{
+  "schema_note": "Each entry pairs the planned figure, the actual outcome, and a programme-level breakdown. Aggregate-only logging is exactly what let the C2 case go unnoticed for two cycles - the total looked fine.",
+  "decision_log": [
+    {"centre_id": "C1", "cycle": "Day1", "planned_meals": 49500, "actual_meals": 49400, "capacity_utilisation": 0.988, "programme_breakdown_ok": true, "flags": []},
+    {"centre_id": "C1", "cycle": "Day2", "planned_meals": 49800, "actual_meals": 49700, "capacity_utilisation": 0.994, "programme_breakdown_ok": true, "flags": []},
+    {"centre_id": "C1", "cycle": "Day3", "planned_meals": 49600, "actual_meals": 49600, "capacity_utilisation": 0.992, "programme_breakdown_ok": true, "flags": [], "note": "HAPPY PATH reference: 3 clean cycles, no supplier flags, no capacity overrun, no programme-level shortfall."},
+
+    {"centre_id": "C2", "cycle": "Day1", "planned_meals": 49000, "actual_meals": 48900, "capacity_utilisation": 0.978,
+      "programme_breakdown": [
+        {"programme_id": "PRG-001", "planned": 34000, "actual": 34500},
+        {"programme_id": "PRG-002", "planned": 4200, "actual": 3600},
+        {"programme_id": "PRG-003", "planned": 1900, "actual": 1900}
+      ],
+      "programme_breakdown_ok": false,
+      "flags": ["Tier 1 programme PRG-002 under-produced by 14%, offset by over-producing Tier 3 PRG-001. Aggregate output (99.8% of plan) hides this."]
+    },
+    {"centre_id": "C2", "cycle": "Day2", "planned_meals": 49200, "actual_meals": 48950, "capacity_utilisation": 0.981,
+      "programme_breakdown": [
+        {"programme_id": "PRG-001", "planned": 34200, "actual": 34700},
+        {"programme_id": "PRG-002", "planned": 4200, "actual": 3450},
+        {"programme_id": "PRG-003", "planned": 1900, "actual": 1900}
+      ],
+      "programme_breakdown_ok": false,
+      "flags": ["Same pattern repeats: Tier 1 PRG-002 shortfall widening (18%), masked by Tier 3 over-production. This is now a trend, not a one-off."]
+    },
+    {"centre_id": "C2", "cycle": "Day3", "planned_meals": 49000, "actual_meals": 48980, "capacity_utilisation": 0.9996,
+      "programme_breakdown": [
+        {"programme_id": "PRG-001", "planned": 34000, "actual": 34600},
+        {"programme_id": "PRG-002", "planned": 4200, "actual": 3300},
+        {"programme_id": "PRG-003", "planned": 1900, "actual": 1900}
+      ],
+      "programme_breakdown_ok": false,
+      "flags": ["EDGE CASE: 3-cycle trend of a Tier 1 (nutritionally critical, clinically tracked) programme being silently under-delivered while the centre reports 99.96% of aggregate target. A volume-only dashboard rates this centre as top-performing. Root cause: shared fortification-line capacity is being allocated to the larger, easier-to-produce Tier 3 programme first."]
+    },
+
+    {"centre_id": "C3", "cycle": "Day1", "planned_meals": 44000, "actual_meals": 43950, "capacity_utilisation": 0.977, "programme_breakdown_ok": true, "flags": []},
+    {"centre_id": "C3", "cycle": "Day2", "planned_meals": 44200, "actual_meals": 44100, "capacity_utilisation": 0.9977, "programme_breakdown_ok": true, "flags": []},
+    {"centre_id": "C3", "cycle": "Day3", "planned_meals": 51000, "actual_meals": 47200, "capacity_utilisation": 0.925,
+      "programme_breakdown": [
+        {"programme_id": "PRG-002", "planned": 4200, "actual": 1900, "note": "Green leafy vegetable shortage from SUP-204 forced a recipe substitution that dropped fortification compliance for ~55% of servings."}
+      ],
+      "programme_breakdown_ok": false,
+      "flags": ["EDGE CASE: demand surge (+35% order) exposed SUP-204 under load. Missed vegetable delivery cascaded directly into a Tier 1 programme shortfall. This was the first time this supplier was tested under surge conditions - two prior clean cycles gave no warning."]
+    },
+
+    {"centre_id": "C4", "cycle": "Day1", "planned_meals": 37500, "actual_meals": 37400, "capacity_utilisation": 0.997, "programme_breakdown_ok": true, "flags": []},
+    {"centre_id": "C4", "cycle": "Day2", "planned_meals": 37800, "actual_meals": 37200, "capacity_utilisation": 0.984,
+      "timeline_of_reversal": [
+        {"time": "05:30", "event": "Production plan finalised: PRG-002 (Anganwadi, Tier 1) and PRG-005 (Pregnant & Lactating, Tier 1) both scheduled to draw from the same 2,000kg fortified-rice stock pool, each planner unaware the other had claimed it."},
+        {"time": "08:15", "event": "PRG-002 production line draws 1,400kg fortified rice as planned."},
+        {"time": "09:40", "event": "PRG-005 line requests its allocated 900kg fortified rice; only 600kg remains. Shortfall discovered mid-cook, not at planning time."},
+        {"time": "09:55", "event": "DECISION REVERSED: PRG-005 batch already partially prepared with non-fortified rice base is scrapped; centre pivots to a reduced-fortification interim recipe pending emergency restock, and escalates to Regional Manager."},
+        {"time": "11:30", "event": "Emergency 500kg fortified rice delivery arranged from a neighbouring centre's buffer stock; PRG-005 resumes at 70% of planned volume, 2 hours behind schedule."}
+      ],
+      "root_cause": "Fortified rice was tracked as a single undifferentiated stock line rather than being reserved per programme at planning time. The ingredient dependency between two Tier 1 recipes sharing one input was never made visible until the physical stock ran out on the line.",
+      "flags": ["EDGE CASE - MID-CYCLE REVERSAL: the value of this data point is not the shortfall itself but that the failure was invisible at planning time and only surfaced through physical depletion. A retrieval system checking 'is there 2,000kg of fortified rice' would have said yes - the actual failure was an allocation/reservation gap between two competing claims on the same input."],
+      "programme_breakdown_ok": false
+    },
+    {"centre_id": "C4", "cycle": "Day3", "planned_meals": 38000, "actual_meals": 37950, "capacity_utilisation": 0.9987, "programme_breakdown_ok": true, "flags": ["Post-incident: centre now manually double-checks shared-ingredient allocation before finalising plan. No systemic fix yet - this is exactly the check the agent should automate."]}
+  ]
+}

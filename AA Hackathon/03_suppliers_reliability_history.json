@@ -1,0 +1,61 @@
+{
+  "schema_note": "naive_reliability_score = simple rolling on-time-delivery rate over last N cycles. pressure_adjusted_score = same, but failures during demand-surge / high-load cycles are weighted more heavily, because reliability under normal load is not evidence of reliability under stress. The gap between the two scores is itself a signal an agent must surface, not average away.",
+  "suppliers": [
+    {
+      "supplier_id": "SUP-101",
+      "name": "Sunrise Grains Co.",
+      "supplies_ingredient": "Rice (standard)",
+      "serves_centres": ["C1"],
+      "history": [
+        {"cycle": "Day1", "committed_kg": 8000, "delivered_kg": 8000, "on_time": true, "quality_pass": true},
+        {"cycle": "Day2", "committed_kg": 8000, "delivered_kg": 8000, "on_time": true, "quality_pass": true},
+        {"cycle": "Day3", "committed_kg": 8200, "delivered_kg": 8200, "on_time": true, "quality_pass": true}
+      ],
+      "naive_reliability_score": 1.0,
+      "pressure_adjusted_score": 1.0,
+      "flag": null
+    },
+    {
+      "supplier_id": "SUP-204",
+      "name": "AgroFresh Vegetables",
+      "supplies_ingredient": "Green leafy vegetables (spinach/methi) - recipe-locked input for PRG-002 (Tier 1)",
+      "serves_centres": ["C3"],
+      "history": [
+        {"cycle": "Day1", "committed_kg": 1200, "delivered_kg": 1200, "on_time": true, "quality_pass": true, "load_condition": "steady-state"},
+        {"cycle": "Day2", "committed_kg": 1200, "delivered_kg": 1180, "on_time": true, "quality_pass": true, "load_condition": "steady-state"},
+        {"cycle": "Day3", "committed_kg": 1900, "delivered_kg": 900, "on_time": false, "quality_pass": true, "load_condition": "demand surge (+35% order)", "note": "Missed 53% of committed volume specifically on the one cycle load exceeded steady-state. This is the ONLY data point that matters for tomorrow's surge-day forecast, but a naive rolling average buries it under two clean cycles."}
+      ],
+      "naive_reliability_score": 0.83,
+      "pressure_adjusted_score": 0.35,
+      "flag": "RECENCY_VS_PRESSURE - naive average (83%) reads as reliable; performance under the one load condition matching tomorrow's forecast (surge) was 47% of commitment. Treat as high-risk for any surge-day plan, not as a reliable supplier having an off day."
+    },
+    {
+      "supplier_id": "SUP-317",
+      "name": "Delta Dairy",
+      "supplies_ingredient": "Milk",
+      "serves_centres": ["C2", "C5"],
+      "history": [
+        {"cycle": "Day1", "committed_kg": 3000, "delivered_kg": 3000, "on_time": true, "quality_pass": true},
+        {"cycle": "Day2", "committed_kg": 3000, "delivered_kg": 3000, "on_time": true, "quality_pass": true},
+        {"cycle": "Day3", "committed_kg": 3100, "delivered_kg": 3100, "on_time": true, "quality_pass": true}
+      ],
+      "naive_reliability_score": 1.0,
+      "pressure_adjusted_score": 1.0,
+      "flag": null
+    },
+    {
+      "supplier_id": "SUP-450",
+      "name": "Rajasthan Fortified Mills",
+      "supplies_ingredient": "Fortified rice - shared recipe input for PRG-002 and PRG-005",
+      "serves_centres": ["C4"],
+      "history": [
+        {"cycle": "Day1", "committed_kg": 2000, "delivered_kg": 2000, "on_time": true, "quality_pass": true},
+        {"cycle": "Day2", "committed_kg": 2000, "delivered_kg": 2000, "on_time": true, "quality_pass": true, "note": "Delivery itself was fine - the Day2 problem was downstream allocation, not supply. See decision_log C4 Day2 reversal."},
+        {"cycle": "Day3", "committed_kg": 2100, "delivered_kg": 2100, "on_time": true, "quality_pass": true}
+      ],
+      "naive_reliability_score": 1.0,
+      "pressure_adjusted_score": 1.0,
+      "flag": "SUPPLY_NOT_THE_RISK - this supplier is clean. The C4 incident was caused by two Tier-1 recipes drawing on one unreserved stock pool, which no supplier-side metric would ever surface."
+    }
+  ]
+}

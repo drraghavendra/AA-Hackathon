@@ -1,0 +1,39 @@
+{
+  "centres": [
+    {
+      "centre_id": "C1",
+      "name": "Bangalore - Whitefield",
+      "base_daily_capacity_meals": 50000,
+      "equipment_notes": "Two steam-cooking lines, no single-line dependency",
+      "role_in_dataset": "HAPPY PATH - clean 3-cycle record"
+    },
+    {
+      "centre_id": "C2",
+      "name": "Hyderabad - Kukatpally",
+      "base_daily_capacity_meals": 50000,
+      "equipment_notes": "Single fortification line shared across Tier 1 programmes",
+      "role_in_dataset": "EDGE CASE - hit aggregate target by quietly deprioritising a Tier 1 programme"
+    },
+    {
+      "centre_id": "C3",
+      "name": "Pune - Hadapsar",
+      "base_daily_capacity_meals": 45000,
+      "equipment_notes": "Depends on single vegetable supplier for leafy greens",
+      "role_in_dataset": "EDGE CASE - supplier reliable for 2 cycles, missed a critical commitment under surge pressure"
+    },
+    {
+      "centre_id": "C4",
+      "name": "Jaipur - Mansarovar",
+      "base_daily_capacity_meals": 38000,
+      "equipment_notes": "Fortified-rice stock is shared/pooled across two recipes (PRG-002 and PRG-005) without a hard reservation system",
+      "role_in_dataset": "EDGE CASE - mid-cycle reversal caused by an uncaught ingredient dependency"
+    },
+    {
+      "centre_id": "C5",
+      "name": "Delhi - Rohini",
+      "base_daily_capacity_meals": 42000,
+      "equipment_notes": "Currently near steady-state capacity ceiling",
+      "role_in_dataset": "Receives an unplanned demand surge (new government order) on the day being reasoned over"
+    }
+  ]
+}

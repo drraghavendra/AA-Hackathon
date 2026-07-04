@@ -1,0 +1,24 @@
+{
+  "cycle": "Day4",
+  "generated_at": "Day4T04:00:00",
+  "report_type": "Daily Production Planning Report (as currently produced, pre-agent)",
+  "note": "This mirrors the real-world report: it lists what's needed, sorted by centre and quantity. It contains NO priority weighting, NO supplier risk annotation, and NO cross-centre view. That absence is what the agent must compensate for.",
+  "requirements": [
+    {"centre_id": "C1", "programme_id": "PRG-001", "meals_required": 34500, "key_ingredients": [{"item": "Rice (standard)", "kg_required": 4200, "supplier_id": "SUP-101"}]},
+    {"centre_id": "C1", "programme_id": "PRG-003", "meals_required": 2000, "key_ingredients": [{"item": "Fortified porridge mix", "kg_required": 300, "supplier_id": "SUP-101"}]},
+
+    {"centre_id": "C2", "programme_id": "PRG-001", "meals_required": 34500, "key_ingredients": [{"item": "Rice (standard)", "kg_required": 4150, "supplier_id": "SUP-317"}]},
+    {"centre_id": "C2", "programme_id": "PRG-002", "meals_required": 4200, "key_ingredients": [{"item": "Fortified rice", "kg_required": 500, "supplier_id": "SUP-317"}, {"item": "Milk", "kg_required": 200, "supplier_id": "SUP-317"}]},
+    {"centre_id": "C2", "programme_id": "PRG-003", "meals_required": 1900, "key_ingredients": [{"item": "Fortified porridge mix", "kg_required": 280, "supplier_id": "SUP-317"}]},
+
+    {"centre_id": "C3", "programme_id": "PRG-001", "meals_required": 34000, "key_ingredients": [{"item": "Rice (standard)", "kg_required": 4100}]},
+    {"centre_id": "C3", "programme_id": "PRG-002", "meals_required": 5000, "key_ingredients": [{"item": "Green leafy vegetables", "kg_required": 1900, "supplier_id": "SUP-204"}], "note": "Volume raised vs prior cycles due to a newly added anemia-monitoring cohort - this is the second consecutive above-steady-state ask placed on SUP-204."},
+
+    {"centre_id": "C4", "programme_id": "PRG-002", "meals_required": 4200, "key_ingredients": [{"item": "Fortified rice", "kg_required": 1400, "supplier_id": "SUP-450"}]},
+    {"centre_id": "C4", "programme_id": "PRG-005", "meals_required": 1500, "key_ingredients": [{"item": "Fortified rice", "kg_required": 900, "supplier_id": "SUP-450"}]},
+
+    {"centre_id": "C5", "programme_id": "PRG-001", "meals_required": 34000, "key_ingredients": [{"item": "Rice (standard)", "kg_required": 4050}]},
+    {"centre_id": "C5", "programme_id": "PRG-004", "meals_required": 12000, "key_ingredients": [{"item": "Rice (standard)", "kg_required": 1450}, {"item": "Milk", "kg_required": 600, "supplier_id": "SUP-317"}],
+      "note": "SURGE: newly confirmed government order received last night expanding Mid-Day Meal coverage to 18 additional schools starting today. Not present in any prior planning cycle. Centre C5 base capacity is 42,000 meals/day; combined ask (34,000 + 12,000 = 46,000) is 109% of stated capacity."}
+  ]
+}

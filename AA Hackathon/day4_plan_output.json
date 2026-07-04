@@ -1,0 +1,243 @@
+{
+  "capacity_analysis": [
+    {
+      "centre_id": "C1",
+      "required_meals": 36500,
+      "capacity": 50000,
+      "forecast_utilisation": 0.73,
+      "historical_avg_utilisation": 0.991,
+      "over_capacity_by_meals": 0
+    },
+    {
+      "centre_id": "C2",
+      "required_meals": 40600,
+      "capacity": 50000,
+      "forecast_utilisation": 0.812,
+      "historical_avg_utilisation": 0.986,
+      "over_capacity_by_meals": 0
+    },
+    {
+      "centre_id": "C3",
+      "required_meals": 39000,
+      "capacity": 45000,
+      "forecast_utilisation": 0.867,
+      "historical_avg_utilisation": 0.967,
+      "over_capacity_by_meals": 0
+    },
+    {
+      "centre_id": "C4",
+      "required_meals": 5700,
+      "capacity": 38000,
+      "forecast_utilisation": 0.15,
+      "historical_avg_utilisation": 0.993,
+      "over_capacity_by_meals": 0
+    },
+    {
+      "centre_id": "C5",
+      "required_meals": 46000,
+      "capacity": 42000,
+      "forecast_utilisation": 1.095,
+      "historical_avg_utilisation": null,
+      "over_capacity_by_meals": 4000
+    }
+  ],
+  "priority_findings": [
+    {
+      "type": "SILENT_DEPRIORITISATION",
+      "centre_id": "C2",
+      "programme_id": "PRG-002",
+      "cycle_ratios": [
+        0.857,
+        0.821,
+        0.786
+      ],
+      "avg_fulfilment": 0.821,
+      "avg_aggregate_utilisation": 0.986,
+      "explanation": "Centre C2 averaged 98.6% of aggregate target across cycles while Tier-1 programme PRG-002 averaged only 82.1% fulfilment. The aggregate number conceals this."
+    }
+  ],
+  "cascade_claims": [
+    {
+      "type": "SUPPLY_RISK",
+      "centre_id": "C3",
+      "programme_id": "PRG-002",
+      "programme_tier": "Tier 1 - Critical",
+      "ingredient": "Green leafy vegetables",
+      "supplier": {
+        "supplier_id": "SUP-204",
+        "supplier_name": "AgroFresh Vegetables",
+        "naive_score": 0.819,
+        "pressure_adjusted_score": 0.474,
+        "tested_at_this_load": true,
+        "risk": true
+      },
+      "meals_at_risk": 5000,
+      "explanation": "Green leafy vegetables for programme PRG-002 (Tier 1 - Critical) at C3 depends on AgroFresh Vegetables, whose pressure-adjusted reliability at this volume is 47% (naive average looks like 82%)."
+    },
+    {
+      "type": "ALLOCATION_AUTO_RESOLVED",
+      "centre_id": "C4",
+      "item": "Fortified rice",
+      "claimants": [
+        {
+          "programme_id": "PRG-002",
+          "kg_required": 1400,
+          "tier": "Tier 1 - Critical"
+        },
+        {
+          "programme_id": "PRG-005",
+          "kg_required": 900,
+          "tier": "Tier 1 - Critical"
+        }
+      ],
+      "total_claimed_kg": 2300,
+      "available_kg": 4200,
+      "resolvable_from_supply": true,
+      "reservations": {
+        "PRG-002": 1400,
+        "PRG-005": 900
+      },
+      "explanation": "2 programmes at C4 draw from the same stock pool 'Fortified rice' (2300kg claimed vs 4200kg available). Supply covers both claims \u2014 reservations locked per programme before production starts, closing the gap that previously caused a mid-cycle reversal."
+    },
+    {
+      "type": "ALLOCATION_AUTO_RESOLVED",
+      "centre_id": "C5",
+      "item": "Rice (standard)",
+      "claimants": [
+        {
+          "programme_id": "PRG-001",
+          "kg_required": 4050,
+          "tier": "Tier 3 - Standard"
+        },
+        {
+          "programme_id": "PRG-004",
+          "kg_required": 1450,
+          "tier": "Tier 2 - High"
+        }
+      ],
+      "total_claimed_kg": 5500,
+      "available_kg": 11100,
+      "resolvable_from_supply": true,
+      "reservations": {
+        "PRG-001": 4050,
+        "PRG-004": 1450
+      },
+      "explanation": "2 programmes at C5 draw from the same stock pool 'Rice (standard)' (5500kg claimed vs 11100kg available). Supply covers both claims \u2014 reservations locked per programme before production starts, closing the gap that previously caused a mid-cycle reversal."
+    }
+  ],
+  "day_plan": {
+    "auto_resolved_actions": [
+      {
+        "action": "LOCK_PER_PROGRAMME_RESERVATION",
+        "detail": {
+          "type": "ALLOCATION_AUTO_RESOLVED",
+          "centre_id": "C4",
+          "item": "Fortified rice",
+          "claimants": [
+            {
+              "programme_id": "PRG-002",
+              "kg_required": 1400,
+              "tier": "Tier 1 - Critical"
+            },
+            {
+              "programme_id": "PRG-005",
+              "kg_required": 900,
+              "tier": "Tier 1 - Critical"
+            }
+          ],
+          "total_claimed_kg": 2300,
+          "available_kg": 4200,
+          "resolvable_from_supply": true,
+          "reservations": {
+            "PRG-002": 1400,
+            "PRG-005": 900
+          },
+          "explanation": "2 programmes at C4 draw from the same stock pool 'Fortified rice' (2300kg claimed vs 4200kg available). Supply covers both claims \u2014 reservations locked per programme before production starts, closing the gap that previously caused a mid-cycle reversal."
+        }
+      },
+      {
+        "action": "LOCK_PER_PROGRAMME_RESERVATION",
+        "detail": {
+          "type": "ALLOCATION_AUTO_RESOLVED",
+          "centre_id": "C5",
+          "item": "Rice (standard)",
+          "claimants": [
+            {
+              "programme_id": "PRG-001",
+              "kg_required": 4050,
+              "tier": "Tier 3 - Standard"
+            },
+            {
+              "programme_id": "PRG-004",
+              "kg_required": 1450,
+              "tier": "Tier 2 - High"
+            }
+          ],
+          "total_claimed_kg": 5500,
+          "available_kg": 11100,
+          "resolvable_from_supply": true,
+          "reservations": {
+            "PRG-001": 4050,
+            "PRG-004": 1450
+          },
+          "explanation": "2 programmes at C5 draw from the same stock pool 'Rice (standard)' (5500kg claimed vs 11100kg available). Supply covers both claims \u2014 reservations locked per programme before production starts, closing the gap that previously caused a mid-cycle reversal."
+        }
+      }
+    ],
+    "escalation_cards": [
+      {
+        "priority": "HIGH",
+        "reason": "SILENT_DEPRIORITISATION",
+        "detail": {
+          "type": "SILENT_DEPRIORITISATION",
+          "centre_id": "C2",
+          "programme_id": "PRG-002",
+          "cycle_ratios": [
+            0.857,
+            0.821,
+            0.786
+          ],
+          "avg_fulfilment": 0.821,
+          "avg_aggregate_utilisation": 0.986,
+          "explanation": "Centre C2 averaged 98.6% of aggregate target across cycles while Tier-1 programme PRG-002 averaged only 82.1% fulfilment. The aggregate number conceals this."
+        },
+        "recommended_action": "Review shared-equipment/line allocation policy for this centre; current default is starving a Tier 1 programme across multiple cycles."
+      },
+      {
+        "priority": "HIGH",
+        "reason": "CAPACITY_CEILING_BREACH",
+        "detail": {
+          "centre_id": "C5",
+          "required_meals": 46000,
+          "capacity": 42000,
+          "forecast_utilisation": 1.095,
+          "historical_avg_utilisation": null,
+          "over_capacity_by_meals": 4000
+        },
+        "recommended_action": "Shift ~4000 meals of steady-state load to C4 (forecast utilisation 15%)"
+      },
+      {
+        "priority": "HIGH",
+        "reason": "SUPPLY_RISK",
+        "detail": {
+          "type": "SUPPLY_RISK",
+          "centre_id": "C3",
+          "programme_id": "PRG-002",
+          "programme_tier": "Tier 1 - Critical",
+          "ingredient": "Green leafy vegetables",
+          "supplier": {
+            "supplier_id": "SUP-204",
+            "supplier_name": "AgroFresh Vegetables",
+            "naive_score": 0.819,
+            "pressure_adjusted_score": 0.474,
+            "tested_at_this_load": true,
+            "risk": true
+          },
+          "meals_at_risk": 5000,
+          "explanation": "Green leafy vegetables for programme PRG-002 (Tier 1 - Critical) at C3 depends on AgroFresh Vegetables, whose pressure-adjusted reliability at this volume is 47% (naive average looks like 82%)."
+        },
+        "recommended_action": "Pre-emptively source from a backup supplier or reduce today's committed volume now and communicate proactively \u2014 do not wait for the delivery window."
+      }
+    ]
+  }
+}

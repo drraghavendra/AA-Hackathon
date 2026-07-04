@@ -1,0 +1,45 @@
+{
+  "schema_note": "Criticality tier is INDEPENDENT of volume. This is deliberate: a low-volume programme can be Tier 1 (nutritionally critical) while a high-volume programme is Tier 3. A planning report that sorts by quantity alone will systematically bury Tier 1 low-volume programmes.",
+  "programmes": [
+    {
+      "programme_id": "PRG-001",
+      "name": "Mid-Day Meal - Government Schools",
+      "criticality_tier": "Tier 3 - Standard",
+      "nutritional_flag": "Balanced calorie/protein meal, no special micronutrient mandate",
+      "typical_daily_volume_meals": 34000,
+      "reversibility_if_missed": "High - can be made up next day without medical consequence"
+    },
+    {
+      "programme_id": "PRG-002",
+      "name": "Anganwadi Take-Home Ration (Iron-Fortified)",
+      "criticality_tier": "Tier 1 - Critical",
+      "nutritional_flag": "Iron-fortified; targets anemia in children under 6; requires green leafy vegetables + fortified rice as recipe-locked inputs",
+      "typical_daily_volume_meals": 4200,
+      "reversibility_if_missed": "Low - part of a medically supervised anemia intervention; a missed day breaks the supplementation cycle"
+    },
+    {
+      "programme_id": "PRG-003",
+      "name": "Adolescent Girls Anemia & Nutrition Programme",
+      "criticality_tier": "Tier 1 - Critical",
+      "nutritional_flag": "Iron + folic acid fortified meal; clinically tracked cohort",
+      "typical_daily_volume_meals": 1900,
+      "reversibility_if_missed": "Low - clinically tracked; missed doses are reported upstream to health department"
+    },
+    {
+      "programme_id": "PRG-004",
+      "name": "Mid-Day Meal - Government Schools (New Expansion Order)",
+      "criticality_tier": "Tier 2 - High",
+      "nutritional_flag": "Standard meal, but politically/contractually high-visibility as a fresh government commitment",
+      "typical_daily_volume_meals": 0,
+      "reversibility_if_missed": "Medium - reputational and contractual exposure if a brand-new government order is missed on day one"
+    },
+    {
+      "programme_id": "PRG-005",
+      "name": "Pregnant & Lactating Women Nutrition Support",
+      "criticality_tier": "Tier 1 - Critical",
+      "nutritional_flag": "Fortified khichdi/porridge; recipe shares fortified rice with PRG-002",
+      "typical_daily_volume_meals": 1500,
+      "reversibility_if_missed": "Low - maternal nutrition programme, missed servings flagged to health authorities"
+    }
+  ]
+}
