@@ -8,7 +8,7 @@ Without proper support, production managers risk failures such as:
 • Demand surges — a sudden programme expansion or government order — overwhelming a schedule built for steady-state operations
 All of this forces reactive intervention on decisions that should have been caught before production started.
 
-YOUR MISSION
+MISSION
 Build an agentic workflow that reads the daily planning report as a starting condition, then reasons across inventory state, supplier reliability, programme priority, and distributed production capacity to determine what should actually be produced today, in what order, and where production load should shift across centres. The agent should catch cascade risks before they materialise and surface the right human intervention points.
 
 DESIGNING THE DATASET
