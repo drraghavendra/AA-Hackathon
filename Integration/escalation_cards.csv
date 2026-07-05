@@ -1,0 +1,4 @@
+priority,reason,centre_id,programme_id,explanation,recommended_action
+HIGH,SILENT_DEPRIORITISATION,C2,PRG-002,Centre C2 averaged 98.6% of aggregate target across cycles while Tier-1 programme PRG-002 averaged only 82.1% fulfilment. The aggregate number conceals this.,Review shared-equipment/line allocation policy for this centre; current default is starving a Tier 1 programme across multiple cycles.
+HIGH,CAPACITY_CEILING_BREACH,C5,,46000 meals required vs 42000 capacity (110% of ceiling).,Shift ~4000 meals of steady-state load to C4 (forecast utilisation 15%)
+HIGH,SUPPLY_RISK,C3,PRG-002,"Green leafy vegetables for programme PRG-002 (Tier 1 - Critical) at C3 depends on AgroFresh Vegetables, whose pressure-adjusted reliability at this volume is 47% (naive average looks like 82%).",Pre-emptively source from a backup supplier or reduce today's committed volume now — do not wait for the delivery window.

@@ -1,0 +1,3 @@
+action,centre_id,item,explanation
+LOCK_PER_PROGRAMME_RESERVATION,C4,Fortified rice,2 programmes at C4 draw from the same stock pool 'Fortified rice' (2300kg claimed vs 4200kg available). Supply covers both claims — reservations locked per programme before production starts.
+LOCK_PER_PROGRAMME_RESERVATION,C5,Rice (standard),2 programmes at C5 draw from the same stock pool 'Rice (standard)' (5500kg claimed vs 11100kg available). Supply covers both claims — reservations locked per programme before production starts.
